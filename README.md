@@ -19,6 +19,8 @@ sudo mv wkhtmltoimage  /usr/bin/wkhtmltoimage
 ```
 ## Usage
 
+Example of using the API in Ruby
+
 ```ruby
 response = HTTParty.get("[HOST]/create.php?url=[URL]&image_name=[IMAGE_NAME]") # Access the API through httparty and pass the url of the page and the name
 if response.parsed_response['statusCode'] == 200 # If the image was processed grab the link of the image
