@@ -26,7 +26,7 @@ response = HTTParty.get("[HOST]/create.php?url=[URL]&image_name=[IMAGE_NAME]") #
 if response.parsed_response['statusCode'] == 200 # If the image was processed grab the link of the image
 	image_url = response.parsed_response['statusMessage']
 end
-HTTParty.get("[HOST]/delete.php") # Remove the images created
+HTTParty.get("[HOST]/delete.php?image_name=[IMAGE_NAME].jpg") # Remove the images created
 ```
 
 ## License

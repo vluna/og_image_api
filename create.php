@@ -1,5 +1,4 @@
 <?php
-
 // Error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -12,7 +11,7 @@ header("Content-Type: application/json; charset=UTF-8");
 try {
     getOgImage();
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ', $e->getMessage(), "\n";
 }
 
 /**
@@ -33,7 +32,7 @@ function getOgImage() {
 		$output_path = "images/".$_GET['image_name'].".jpg"; // Image name
 		$result = shell_exec("$path $url $output_path 2>&1"); // Execute command for creating the image
 
-		echo json_encode(['statusCode' => 200, 'statusMessage' => '[HOST]/images/'.$_GET['image_name'].".jpg"]);
+		echo json_encode(['statusCode' => 200, 'statusMessage' => $_SERVER['HTTP_HOST'].'/og_image_api_test/images/'.$_GET['image_name'].".jpg"]);
 	} else {
 		echo json_encode(['statusCode' => 400, 'statusMessage' => "Something went wrong."]);
 	}
@@ -62,7 +61,7 @@ function checkMissingParameters() {
 	if(!isset($_GET['url'])) {
 		throw new Exception("Missing parameter: [url]");
 	} else {
-		validUrl($_GET['url']);
+		validUrl($_GET['url']); // Vaidate url
 	}
 
 	if(!isset($_GET['image_name'])) {
@@ -71,5 +70,4 @@ function checkMissingParameters() {
 
 	return true;
 }
-
 ?>
